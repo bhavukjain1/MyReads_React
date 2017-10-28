@@ -8,7 +8,7 @@ class App extends Component {
   render() {
 
     const bookShelves = [
-    {type:'Want to Read', books:[{title:'To Kill a Mockingbird', author:'Harper Lee', image:'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api'}]}
+    {shelfType:'Want to Read', books:[{title:'To Kill a Mockingbird', author:'Harper Lee', image:'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api'}]}
     ]
 
     console.log(bookShelves)
@@ -22,7 +22,7 @@ class App extends Component {
            {bookShelves.map(bookShelf => (
             <div>
               <BookShelf
-                type:{bookShelf.type}
+                shelfType:{bookShelf.shelfType}
                 books:{bookShelf.books}
               />
             </div>
