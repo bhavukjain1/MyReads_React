@@ -7,11 +7,15 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
 	state = {
-		books:[]
+		books:[],
+		query:''
 	}
 
 	handleChange = (e) => {
 		const value = e.target.value
+
+		this.setState({query:value})
+
 		if (value === '') {
 			this.setState({books:[]})
 			return
@@ -31,13 +35,15 @@ class SearchBooks extends Component {
 	}
 
 	render() {
+
+		const {query} = this.state
 		return (
 			<div>
 				<div className='search-books'>
  				  <div className='search-books-bar'>
 					<Link className="close-search" to='/'>Close</Link>
 					<div className='search-books-input-wrapper'>
-					   <input type="text" onChange={this.handleChange} placeholder="Search by title or author"/>
+					   <input type="text" value={query} onChange={this.handleChange} placeholder="Search by title or author"/>
 					</div>
  				  </div>
  				  <div>
