@@ -11,7 +11,7 @@ class BookShelf extends Component {
 
    render() {
 
-   	  const {type, books} = this.props
+   	  const {shelfType, books} = this.props
 
 	  return (
 	     <div>
