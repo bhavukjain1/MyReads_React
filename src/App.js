@@ -9,7 +9,7 @@ class App extends Component {
 
     const bookShelves = [
       {
-        shelfType:'Want to Read',
+        type:'Want to Read',
         books:[
             {title:'To Kill a Mockingbird',
             author:'Harper Lee',
@@ -29,8 +29,8 @@ class App extends Component {
            {bookShelves.map(bookShelf => (
             <div>
               <BookShelf
-                shelfType:{bookShelf.shelfType}
-                books:{bookShelf.books}
+                type={bookShelf.type}
+                books={bookShelf.books}
               />
             </div>
            ))}
