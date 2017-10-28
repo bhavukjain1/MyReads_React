@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import BookShelf from './BookShelf'
-import './App.css';
+import SearchBooks from './SearchBooks'
 import * as BooksAPI from './BooksAPI'
+import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import './App.css';
+
+
 
 class App extends Component {
 
@@ -26,46 +31,41 @@ class App extends Component {
 
   render() {
 
-    const bookShelves =
-      {
-        type:'Want to Read',
-        books:[
-            {title:'To Kill a Mockingbird',
-            author:'Harper Lee',
-            image:'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api'}
-            ]
-      }
-
-
-    // const bookShelf =
-
-    console.log(bookShelves)
-
     return (
       <div className="App">
-        <div className="list-books-title">
-          <h1>MyReads</h1>
-        </div>
-        <div className='list-books-content'>
-            <div>
-              <BookShelf
-                type={'Want To Read'}
-                books={this.state.wantToRead}
-              />
+        <Route exact path='/' render={() => (
+          <div>
+            <div className="list-books-title">
+             <h1>MyReads</h1>
+           </div>
+            <div className='list-books-content'>
+              <div>
+                <BookShelf
+                  type={'Want To Read'}
+                  books={this.state.wantToRead}
+                />
+              </div>
+              <div>
+                <BookShelf
+                  type={'Currently Reading'}
+                  books={this.state.currentlyReading}
+                />
+              </div>
+              <div>
+                <BookShelf
+                  type={'Read'}
+                  books={this.state.read}
+                />
+              </div>
             </div>
-            <div>
-              <BookShelf
-                type={'Currently Reading'}
-                books={this.state.currentlyReading}
-              />
+            <div className="open-search">
+                <Link to='/search'>Add a book</Link>
             </div>
-            <div>
-              <BookShelf
-                type={'Read'}
-                books={this.state.read}
-              />
-            </div>
-        </div>
+          </div>
+         )}
+        />
+
+        <Route path='/search' component={SearchBooks} />
       </div>
     )
   }
