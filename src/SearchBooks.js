@@ -21,9 +21,17 @@ class SearchBooks extends Component {
 			return
 		}
 		BooksAPI.search(value,20).then(books => {
-			console.log(books)
+
 			if (books.constructor === Array) {
-				books.map(book => book.shelf = 'none')
+				books.map(book => {
+					const foundBooks = this.props.allBooks.filter(b => b.id === book.id)
+					if (foundBooks.length > 0) {
+						return book.shelf = foundBooks[0].shelf
+					}else {
+						return book.shelf = 'none'
+					}
+				})
+
 			   this.setState({
 				  books:books
 			   })

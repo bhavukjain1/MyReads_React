@@ -62,6 +62,8 @@ class App extends Component {
 
   render() {
 
+    const {wantToRead,currentlyReading,read} = this.state
+
     return (
       <div className="App">
         <Route exact path='/' render={() => (
@@ -73,21 +75,21 @@ class App extends Component {
               <div>
                 <BookShelf
                   type={'Currently Reading'}
-                  books={this.state.currentlyReading}
+                  books={currentlyReading}
                   updateShelf={this.updateShelf}
                 />
               </div>
               <div>
                 <BookShelf
                   type={'Want To Read'}
-                  books={this.state.wantToRead}
+                  books={wantToRead}
                   updateShelf={this.updateShelf}
                 />
               </div>
               <div>
                 <BookShelf
                   type={'Read'}
-                  books={this.state.read}
+                  books={read}
                   updateShelf={this.updateShelf}
                 />
               </div>
@@ -102,6 +104,7 @@ class App extends Component {
         <Route path='/search' render={() => (
             <SearchBooks
               updateShelf={this.updateShelf}
+              allBooks={wantToRead.concat(currentlyReading,read)}
             />
           )}
         />
