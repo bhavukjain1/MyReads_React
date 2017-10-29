@@ -30,6 +30,9 @@ class App extends Component {
   }
 
   updateShelf = (book,shelf) => {
+
+    BooksAPI.update(book,shelf)
+
     this.setState((state) => ({
         wantToRead: state.wantToRead.filter(currentBook => currentBook.id !== book.id),
         currentlyReading: state.currentlyReading.filter(currentBook => currentBook.id !== book.id),
