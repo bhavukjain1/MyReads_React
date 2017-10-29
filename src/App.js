@@ -29,6 +29,37 @@ class App extends Component {
 
   }
 
+  updateShelf = (book,shelf) => {
+    this.setState((state) => ({
+        wantToRead: state.wantToRead.filter(currentBook => currentBook.id !== book.id),
+        currentlyReading: state.currentlyReading.filter(currentBook => currentBook.id !== book.id),
+        read: state.read.filter(currentBook => currentBook.id !== book.id)
+    }))
+
+    book.shelf = shelf
+
+    switch(shelf) {
+      case 'wantToRead':
+          this.setState((state) => ({
+            wantToRead: state.wantToRead.concat([book])
+          }))
+          break
+      case 'currentlyReading':
+          this.setState((state) => ({
+            currentlyReading: state.currentlyReading.concat([book])
+          }))
+          break
+      case 'read':
+          this.setState((state) => ({
+            read: state.read.concat([book])
+          }))
+          break
+      default:
+          break
+    }
+
+  }
+
   render() {
 
     return (
@@ -41,20 +72,23 @@ class App extends Component {
             <div className='list-books-content'>
               <div>
                 <BookShelf
-                  type={'Want To Read'}
-                  books={this.state.wantToRead}
+                  type={'Currently Reading'}
+                  books={this.state.currentlyReading}
+                  updateShelf={this.updateShelf}
                 />
               </div>
               <div>
                 <BookShelf
-                  type={'Currently Reading'}
-                  books={this.state.currentlyReading}
+                  type={'Want To Read'}
+                  books={this.state.wantToRead}
+                  updateShelf={this.updateShelf}
                 />
               </div>
               <div>
                 <BookShelf
                   type={'Read'}
                   books={this.state.read}
+                  updateShelf={this.updateShelf}
                 />
               </div>
             </div>
@@ -65,7 +99,12 @@ class App extends Component {
          )}
         />
 
-        <Route path='/search' component={SearchBooks} />
+        <Route path='/search' render={() => (
+            <SearchBooks
+              updateShelf={this.updateShelf}
+            />
+          )}
+        />
       </div>
     )
   }

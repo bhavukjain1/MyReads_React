@@ -23,6 +23,7 @@ class SearchBooks extends Component {
 		BooksAPI.search(value,20).then(books => {
 			console.log(books)
 			if (books.constructor === Array) {
+				books.map(book => book.shelf = 'none')
 			   this.setState({
 				  books:books
 			   })
@@ -36,7 +37,8 @@ class SearchBooks extends Component {
 
 	render() {
 
-		const {query} = this.state
+		const {query,books} = this.state
+		const {updateShelf} = this.props
 		return (
 			<div>
 				<div className='search-books'>
@@ -49,7 +51,8 @@ class SearchBooks extends Component {
  				  <div>
                		 <BookShelf
                  		type={''}
-                  	    books={this.state.books}
+                  	    books={books}
+                  	    updateShelf={updateShelf}
               		 />
             	  </div>
 				</div>
