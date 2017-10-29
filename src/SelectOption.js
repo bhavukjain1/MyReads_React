@@ -12,7 +12,6 @@ class SelectOption extends Component {
 		const {book} = this.props
 		return (
 			<div className='book-shelf-changer'>
-			{console.log(book.shelf)}
 			   <select value={book.shelf} onChange={this.selectionChanged}>
 			        <option value="none" disabled>Move to...</option>
 			        <option value="currentlyReading">Currently Reading</option>
