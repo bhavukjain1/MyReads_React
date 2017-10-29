@@ -22,24 +22,26 @@ class SearchBooks extends Component {
 		}
 		BooksAPI.search(value,20).then(books => {
 			console.log(books)
-			if (books.constructor === Array && this.state.query === value) {
-				books.map(book => {
-					const foundBooks = this.props.allBooks.filter(b => b.id === book.id)
-					if (foundBooks.length > 0) {
-						return book.shelf = foundBooks[0].shelf
-					}else {
-						return book.shelf = 'none'
-					}
-				})
+			if (books.constructor === Array) {
+				if (this.state.query === value) {
+					books.map(book => {
+						const foundBooks = this.props.allBooks.filter(b => b.id === book.id)
+						if (foundBooks.length > 0) {
+							return book.shelf = foundBooks[0].shelf
+						}else {
+							return book.shelf = 'none'
+						}
+					})
 
-			   this.setState({
-				  books:books
-			   })
-		    }else {
-		    // 	this.setState({
-				  // books:[]
-			   // })
-		    }
+					this.setState({
+						books:books
+					})
+				}
+			}else {
+				this.setState({
+					books:[]
+				})
+			}
 		})
 	}
 
