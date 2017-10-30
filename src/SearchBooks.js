@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BookShelf from './BookShelf'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-// import serializeForm from 'form-serialize'
 
 class SearchBooks extends Component {
 
@@ -21,7 +20,6 @@ class SearchBooks extends Component {
 			return
 		}
 		BooksAPI.search(value,20).then(books => {
-			console.log(books)
 			if (books.constructor === Array) {
 				if (this.state.query === value) {
 					books.map(book => {
